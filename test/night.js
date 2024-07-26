@@ -1,23 +1,18 @@
-module.exports={
-    'Google advanced search: nightwatch'(browser){
-       
-        browser
-     
-            .url('http://localhost:5174/')
-            // .setValue('input[placeholder="Enter email address"]','mkraofx@gmail.com')
-            // .setValue('input[type="password"]','Pass@123')
-            // .click('button[id="Log-in button"]')
-            // .click('a[id="My team"]')
-            // .click('a[id="Add User"]')
-            // .click('input[value="admin"]')
-            // .click('input[value="admin_assistant_manager"]')
-            // .click('input[value="admin_creative_manager"]')
-            .setValue('input[id="first name"]',"deepthi")
-            .setValue('input[id="second name"]',"k")
-            .setValue('input[id="email"]',"abhi@gmail.com")
-            .setValue('input[type="password"]','Pass@123')
-            // .click('input[id="sendStatus"]')
-            .click('button[id="submit"]')
-            .saveScreenshot("tests_output/google1.png")
-            // .pause(3000)
-    }}
+module.exports = {
+  'Google advanced search: nightwatch': function (browser) {
+    browser
+      .url('http://localhost:5174/')
+      .waitForElementPresent('input[id="first name"]', 10000)
+      .setValue('input[id="first name"]', "deepthi")
+      .waitForElementPresent('input[id="second name"]', 10000)
+      .setValue('input[id="second name"]', "k")
+      .waitForElementPresent('input[id="email"]', 10000)
+      .setValue('input[id="email"]', "abhi@gmail.com")
+      .waitForElementPresent('input[type="password"]', 10000)
+      .setValue('input[type="password"]', 'Pass@123')
+      .waitForElementPresent('button[id="submit"]', 10000)
+      .click('button[id="submit"]')
+      .saveScreenshot("tests_output/google1.png")
+      .end();
+  }
+};
