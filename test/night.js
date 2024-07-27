@@ -1,7 +1,7 @@
 module.exports = {
   'Google advanced search: nightwatch': function (browser) {
     browser
-      .url('http://localhost:5174/')
+      .url('https://svelte-demo-black-omega.vercel.app/')
       .waitForElementPresent('input[id="first name"]', 15000)
       .setValue('input[id="first name"]', "deepthi")
       .waitForElementPresent('input[id="second name"]', 15000)
