@@ -1,7 +1,7 @@
 module.exports = {
   'Google advanced search: nightwatch': function (browser) {
     browser
-      .url('http://localhost:5174/')
+      .url('http://localhost:5173/')
       .waitForElementPresent('input[id="first name"]', 15000)
       .setValue('input[id="first name"]', "deepthi")
       .waitForElementPresent('input[id="second name"]', 15000)
