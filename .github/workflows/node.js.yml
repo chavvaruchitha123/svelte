@@ -2,20 +2,25 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: CI/CD Pipeline
+ 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-# permissions:
-#   id-token: write
-#   contents: read
+ 
+permissions:
+  id-token: write
+  contents: read
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
+ 
     strategy:
       matrix:
         node-version: [18.x]
+ 
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,4 +28,21 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npx nightwatch test/night.js
+    - run: npx nightwatch test/sample.js
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: github-pages
+        path: path/to/your/artifact
+ 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v1
+      with:
+        token: ${{ secrets.GH_PAGES_TOKEN }}
+        artifact_name: github-pages  deploy 
